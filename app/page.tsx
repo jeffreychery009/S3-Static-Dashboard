@@ -25,7 +25,7 @@ const Page = () => {
             <HomeTheme />
             {/* Ghost button */}
             <Button variant="ghost">Get Started</Button>
-            <Link href="/login">
+            <Link href="/dashboard">
               <Button>Login</Button>
             </Link>
           </div>
