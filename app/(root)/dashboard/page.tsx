@@ -8,12 +8,12 @@ import { paymentsData } from '@/constants';
 import { columns, Payment } from '@/app/payments/columns';
 import { DataTable } from '@/app/payments/data-table';
 
-async function getData(): Promise<Payment[]> {
+function getData(): Payment[] {
   return paymentsData;
 }
 
-const page = async () => {
-  const data = await getData();
+const page = () => {
+  const data = getData();
 
   return (
     <div className="">
