@@ -28,6 +28,7 @@ const Page = () => {
             <Link href="/dashboard">
               <Button>Login</Button>
             </Link>
+            <Button>Testing CI/CD</Button>
           </div>
         </div>
         <span className="sm:text-sm text-xs text-muted-foreground">v1.0.0</span>
