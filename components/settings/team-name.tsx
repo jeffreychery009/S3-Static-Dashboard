@@ -43,7 +43,11 @@ export default function ProjectNameCard() {
         <label htmlFor="projectName" className="sr-only">
           Project name
         </label>
-        <Input className="md:w-100 w-full" id="projectName" placeholder="My Project..." />
+        <Input
+          className="md:w-100 w-full"
+          id="projectName"
+          placeholder="My Project..."
+        />
       </div>
 
       {/* Divider */}
@@ -51,7 +55,9 @@ export default function ProjectNameCard() {
 
       {/* Bottom muted bar */}
       <div className="flex justify-between bg-muted/40 px-6 py-3 text-sm text-muted-foreground">
-        <div className="flex items-center">Please use 32 characters at maximum.</div>
+        <div className="flex items-center">
+          Please use 32 characters at maximum.
+        </div>
         <div className="">
           <Button
             onClick={() =>

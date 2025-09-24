@@ -15,8 +15,8 @@ const Footer = () => {
               <span className="text-xl font-semibold">SaaS Lite</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              A clean, modern starter template for building SaaS applications with Next.js,
-              authentication, and production-ready features.
+              A clean, modern starter template for building SaaS applications
+              with Next.js, authentication, and production-ready features.
             </p>
           </div>
 
@@ -104,15 +104,26 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-border/20 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted-foreground">© 2025 SaaS Lite. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">
+            © 2025 SaaS Lite. All rights reserved.
+          </p>
           <div className="flex items-center gap-6 text-xs">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               Terms of Service
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               Contact
             </a>
           </div>

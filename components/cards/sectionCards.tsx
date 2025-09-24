@@ -27,8 +27,12 @@ export function SectionCards() {
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">Trending up this month</div>
-          <div className="text-muted-foreground">Visitors for the last 6 months</div>
+          <div className="line-clamp-1 flex gap-2 font-medium">
+            Trending up this month
+          </div>
+          <div className="text-muted-foreground">
+            Visitors for the last 6 months
+          </div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
@@ -45,8 +49,12 @@ export function SectionCards() {
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">Down 20% this period</div>
-          <div className="text-muted-foreground">Acquisition needs attention</div>
+          <div className="line-clamp-1 flex gap-2 font-medium">
+            Down 20% this period
+          </div>
+          <div className="text-muted-foreground">
+            Acquisition needs attention
+          </div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
@@ -63,7 +71,9 @@ export function SectionCards() {
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">Strong user retention</div>
+          <div className="line-clamp-1 flex gap-2 font-medium">
+            Strong user retention
+          </div>
           <div className="text-muted-foreground">Engagement exceed targets</div>
         </CardFooter>
       </Card>
@@ -81,7 +91,9 @@ export function SectionCards() {
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">Steady performance increase</div>
+          <div className="line-clamp-1 flex gap-2 font-medium">
+            Steady performance increase
+          </div>
           <div className="text-muted-foreground">Meets growth projections</div>
         </CardFooter>
       </Card>

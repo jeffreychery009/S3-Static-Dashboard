@@ -16,7 +16,12 @@ const pricingTiers = [
     price: '$9',
     period: '/month',
     description: 'Perfect for individuals getting started',
-    features: ['Up to 5 projects', 'Basic analytics', 'Email support', '1GB storage'],
+    features: [
+      'Up to 5 projects',
+      'Basic analytics',
+      'Email support',
+      '1GB storage',
+    ],
     popular: false,
   },
   {
@@ -56,9 +61,12 @@ export function PricingSection() {
     <section className="py-16 px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-balance">Simple, Transparent Pricing</h2>
+          <h2 className="text-3xl font-bold mb-4 text-balance">
+            Simple, Transparent Pricing
+          </h2>
           <p className="text-muted-foreground text-sm sm:text-lg text-pretty">
-            Choose the perfect plan for your needs. No hidden fees, cancel anytime.
+            Choose the perfect plan for your needs. No hidden fees, cancel
+            anytime.
           </p>
         </div>
 
@@ -76,7 +84,9 @@ export function PricingSection() {
 
               <CardHeader className="text-center">
                 <CardTitle className="text-xl font-bold">{tier.name}</CardTitle>
-                <CardDescription className="text-sm">{tier.description}</CardDescription>
+                <CardDescription className="text-sm">
+                  {tier.description}
+                </CardDescription>
                 <div className="mt-4">
                   <span className="text-4xl font-bold">{tier.price}</span>
                   <span className="text-muted-foreground">{tier.period}</span>
@@ -95,7 +105,10 @@ export function PricingSection() {
               </CardContent>
 
               <CardFooter>
-                <Button className="w-full" variant={tier.popular ? 'default' : 'outline'}>
+                <Button
+                  className="w-full"
+                  variant={tier.popular ? 'default' : 'outline'}
+                >
                   Get Started
                 </Button>
               </CardFooter>

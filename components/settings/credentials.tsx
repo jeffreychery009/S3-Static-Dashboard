@@ -47,7 +47,9 @@ export default function CredentialsCard() {
 
       {/* Bottom muted bar */}
       <div className="flex justify-between bg-muted/40 px-6 py-3 text-sm text-muted-foreground">
-        <div className="flex items-center">Please use 8 characters at minimum.</div>
+        <div className="flex items-center">
+          Please use 8 characters at minimum.
+        </div>
         <div className="">
           <Button
             onClick={() =>

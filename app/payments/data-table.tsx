@@ -60,8 +60,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { createEntry, type EntryStatus } from '@/lib/entries';
 import { toast } from 'sonner';
+
+type EntryStatus = 'pending' | 'processing' | 'success' | 'failed';
 
 interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -100,20 +101,27 @@ export function DataTable<TData extends { id: string }, TValue>({
   const [data, setData] = React.useState(() => initialData);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [amount, setAmount] = React.useState<string>('');
-  const [status, setStatus] = React.useState<EntryStatus | undefined>(undefined);
+  const [status, setStatus] = React.useState<EntryStatus | undefined>(
+    undefined
+  );
   const [limitAmount, setLimitAmount] = React.useState<string>('');
   const [email, setEmail] = React.useState<string>('');
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
   const sortableId = React.useId();
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {}),
+    useSensor(KeyboardSensor, {})
   );
 
-  const dataIds = React.useMemo<UniqueIdentifier[]>(() => data?.map(({ id }) => id) || [], [data]);
+  const dataIds = React.useMemo<UniqueIdentifier[]>(
+    () => data?.map(({ id }) => id) || [],
+    [data]
+  );
 
   const table = useReactTable({
     data,
@@ -148,12 +156,15 @@ export function DataTable<TData extends { id: string }, TValue>({
         toast.error('Please fill in all fields');
         return;
       }
-      const created = await createEntry({
+      // Mock entry creation for static site
+      const created = {
+        id: Date.now().toString(),
         amount: Number(amount),
         status,
         limit_amount: Number(limitAmount),
         email,
-      });
+        date: new Date().toISOString(),
+      };
 
       setData((prev) => [created as unknown as TData, ...prev]);
       setDialogOpen(false);
@@ -163,7 +174,8 @@ export function DataTable<TData extends { id: string }, TValue>({
       setEmail('');
       toast.success('Entry created');
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Failed to create entry';
+      const message =
+        err instanceof Error ? err.message : 'Failed to create entry';
       toast.error(message);
     }
   }
@@ -176,7 +188,9 @@ export function DataTable<TData extends { id: string }, TValue>({
           <Input
             placeholder="Filter emails..."
             value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-            onChange={(event) => table.getColumn('email')?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn('email')?.setFilterValue(event.target.value)
+            }
             className="max-w-sm w-48 md:w-64"
           />
         </div>
@@ -188,7 +202,9 @@ export function DataTable<TData extends { id: string }, TValue>({
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Add New Section</DialogTitle>
-                <DialogDescription>Fill out the fields below to add a new entry.</DialogDescription>
+                <DialogDescription>
+                  Fill out the fields below to add a new entry.
+                </DialogDescription>
               </DialogHeader>
 
               <div className="grid gap-4 py-4">
@@ -211,7 +227,10 @@ export function DataTable<TData extends { id: string }, TValue>({
                     Status
                   </Label>
                   <div className="col-span-3">
-                    <Select value={status} onValueChange={(v) => setStatus(v as EntryStatus)}>
+                    <Select
+                      value={status}
+                      onValueChange={(v) => setStatus(v as EntryStatus)}
+                    >
                       <SelectTrigger id="status">
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
@@ -257,7 +276,11 @@ export function DataTable<TData extends { id: string }, TValue>({
               </div>
 
               <div className="flex justify-end gap-2">
-                <Button variant="outline" type="button" onClick={() => setDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  type="button"
+                  onClick={() => setDialogOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button type="button" onClick={handleSaveNewEntry}>
@@ -283,10 +306,16 @@ export function DataTable<TData extends { id: string }, TValue>({
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
                       return (
-                        <TableHead key={header.id} className="whitespace-nowrap">
+                        <TableHead
+                          key={header.id}
+                          className="whitespace-nowrap"
+                        >
                           {header.isPlaceholder
                             ? null
-                            : flexRender(header.column.columnDef.header, header.getContext())}
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
                         </TableHead>
                       );
                     })}
@@ -295,14 +324,20 @@ export function DataTable<TData extends { id: string }, TValue>({
               </TableHeader>
               <TableBody>
                 {table.getRowModel().rows?.length ? (
-                  <SortableContext items={dataIds} strategy={verticalListSortingStrategy}>
+                  <SortableContext
+                    items={dataIds}
+                    strategy={verticalListSortingStrategy}
+                  >
                     {table.getRowModel().rows.map((row) => (
                       <DraggableRow key={row.id} row={row} />
                     ))}
                   </SortableContext>
                 ) : (
                   <TableRow>
-                    <TableCell colSpan={columns.length} className="h-24 text-center">
+                    <TableCell
+                      colSpan={columns.length}
+                      className="h-24 text-center"
+                    >
                       No results.
                     </TableCell>
                   </TableRow>

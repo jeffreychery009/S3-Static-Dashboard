@@ -24,7 +24,8 @@ const Deletion = () => {
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-1 mt-2">
             <p className="text-sm text-muted-foreground">
-              This is the deletion of your account. Be careful, this action is irreversible.
+              This is the deletion of your account. Be careful, this action is
+              irreversible.
             </p>
           </div>
         </div>
@@ -44,8 +45,8 @@ const Deletion = () => {
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your account and remove
-                your data from our servers.
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

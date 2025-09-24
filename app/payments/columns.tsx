@@ -17,7 +17,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useSortable } from '@dnd-kit/sortable';
-import { updateEntry } from '@/lib/entries';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -59,7 +58,8 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && 'indeterminate')
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -123,7 +123,8 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       // Handle both 'limit' (mock data) and 'limit_amount' (database)
       const raw = row.getValue('limit') as number | string | null | undefined;
-      const limit = raw != null ? Number(raw) : Number(row.original.limit_amount ?? 0);
+      const limit =
+        raw != null ? Number(raw) : Number(row.original.limit_amount ?? 0);
       return <div className="font-medium">{limit}</div>;
     },
   },
@@ -142,11 +143,13 @@ export const columns: ColumnDef<Payment>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(payment.id)}
+            >
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => updateEntry(payment.id, payment)}>
+            <DropdownMenuItem onClick={() => console.log('Update', payment.id)}>
               Update
             </DropdownMenuItem>
             <DropdownMenuItem

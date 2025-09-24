@@ -9,7 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import {
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
 
 export function VersionSwitcher({
   versions,
@@ -39,10 +43,17 @@ export function VersionSwitcher({
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-(--radix-dropdown-menu-trigger-width)" align="start">
+          <DropdownMenuContent
+            className="w-(--radix-dropdown-menu-trigger-width)"
+            align="start"
+          >
             {versions.map((version) => (
-              <DropdownMenuItem key={version} onSelect={() => setSelectedVersion(version)}>
-                {version} {version === selectedVersion && <Check className="ml-auto" />}
+              <DropdownMenuItem
+                key={version}
+                onSelect={() => setSelectedVersion(version)}
+              >
+                {version}{' '}
+                {version === selectedVersion && <Check className="ml-auto" />}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>

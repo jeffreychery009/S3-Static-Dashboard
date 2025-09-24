@@ -3,7 +3,10 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 
 const MenuBar = () => {
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {

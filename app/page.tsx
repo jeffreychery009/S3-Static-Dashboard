@@ -37,8 +37,9 @@ const Page = () => {
             Clean Starter for your SaaS CI/CD
           </h1>
           <span className="sm:text-lg text-sm max-w-2xl text-center leading-relaxed mt-4 line-height-relaxed">
-            Authentification, Protected Routes, a clean Dashboard shell, Settings page, and one
-            example CRUD entity. Built for Rapid Client Delivery and easy Customization.
+            Authentification, Protected Routes, a clean Dashboard shell,
+            Settings page, and one example CRUD entity. Built for Rapid Client
+            Delivery and easy Customization.
           </span>
           <Image
             src="/dashboard.png"
@@ -55,8 +56,13 @@ const Page = () => {
             className="mt-10 rounded-md sm:rounded-xl shadow-2xl dark:shadow-black/20 border border-border/20 max-w-full h-auto hidden dark:block"
           />
         </div>
-        <div className="flex flex-col items-center justify-center mt-16 sm:mt-48" id="features">
-          <h2 className="text-2xl sm:text-4xl font-semibold">Features Overview</h2>
+        <div
+          className="flex flex-col items-center justify-center mt-16 sm:mt-48"
+          id="features"
+        >
+          <h2 className="text-2xl sm:text-4xl font-semibold">
+            Features Overview
+          </h2>
           <span className="text-sm sm:text-lg text-muted-foreground text-center px-4 mt-4">
             Explore the features that make our app stand out
           </span>
@@ -73,7 +79,9 @@ const Page = () => {
 
         {/* Get Started */}
         <div className="flex flex-col items-center justify-center mt-16 sm:mt-40">
-          <h2 className="text-2xl sm:text-4xl font-semibold">Ready to get started?</h2>
+          <h2 className="text-2xl sm:text-4xl font-semibold">
+            Ready to get started?
+          </h2>
           <span className="text-sm sm:text-lg text-muted-foreground text-center px-4 mt-2">
             Start your journey with our app today
           </span>

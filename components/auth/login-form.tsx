@@ -4,14 +4,14 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { handleGithubLogin } from '@/lib/auth/github.login';
-import { handleGoogleLogin } from '@/lib/auth/google.login';
 import Link from 'next/link';
 import * as React from 'react';
-import { signInWithEmail } from '@/lib/auth/credentials';
 import { toast } from 'sonner';
 
-export function LoginForm({ className, ...props }: React.ComponentProps<'form'>) {
+export function LoginForm({
+  className,
+  ...props
+}: React.ComponentProps<'form'>) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
@@ -20,8 +20,9 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'form'>)
     e.preventDefault();
     try {
       setLoading(true);
-      await signInWithEmail(email, password);
-      toast.success('Logged in');
+      // Mock login for static site
+      console.log('Login attempt:', { email, password });
+      toast.success('Login successful (demo mode)');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Login failed';
       toast.error(message);
@@ -30,7 +31,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'form'>)
     }
   }
   return (
-    <form className={cn('flex flex-col gap-4 sm:gap-6', className)} onSubmit={onSubmit} {...props}>
+    <form
+      className={cn('flex flex-col gap-4 sm:gap-6', className)}
+      onSubmit={onSubmit}
+      {...props}
+    >
       <div className="flex flex-col items-center justify-center gap-2 text-center mb-4">
         <h1 className="text-xl sm:text-2xl font-bold">Login to your account</h1>
         <p className="text-muted-foreground text-sm text-balance items-center">
@@ -52,7 +57,10 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'form'>)
         <div className="grid gap-2 sm:gap-3">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a href="#" className="ml-auto text-xs sm:text-sm underline-offset-4 hover:underline">
+            <a
+              href="#"
+              className="ml-auto text-xs sm:text-sm underline-offset-4 hover:underline"
+            >
               Forgot your password?
             </a>
           </div>
@@ -73,7 +81,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'form'>)
           </span>
         </div>
         <div className="flex flex-row gap-2">
-          <Button variant="outline" className="w-full flex-1" onClick={handleGithubLogin}>
+          <Button
+            variant="outline"
+            className="w-full flex-1"
+            onClick={() => console.log('GitHub login (demo mode)')}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -87,7 +99,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'form'>)
             <span className="hidden sm:inline ml-2">Login with GitHub</span>
             <span className="sm:hidden ml-2">GitHub</span>
           </Button>
-          <Button variant="outline" className="w-full flex-1" onClick={handleGoogleLogin}>
+          <Button
+            variant="outline"
+            className="w-full flex-1"
+            onClick={() => console.log('Google login (demo mode)')}
+          >
             <span className="inline-flex items-center justify-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -4,14 +4,14 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { handleGithubLogin } from '@/lib/auth/github.login';
-import { handleGoogleLogin } from '@/lib/auth/google.login';
 import Link from 'next/link';
 import * as React from 'react';
-import { signUpWithEmail } from '@/lib/auth/credentials';
 import { toast } from 'sonner';
 
-export function SignupForm({ className, ...props }: React.ComponentProps<'form'>) {
+export function SignupForm({
+  className,
+  ...props
+}: React.ComponentProps<'form'>) {
   const [fullName, setFullName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -21,8 +21,9 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'form'>
     e.preventDefault();
     try {
       setLoading(true);
-      await signUpWithEmail({ email, password, fullName });
-      toast.success('Check your email to confirm your account');
+      // Mock signup for static site
+      console.log('Signup attempt:', { email, password, fullName });
+      toast.success('Account created (demo mode)');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Sign up failed';
       toast.error(message);
@@ -31,9 +32,15 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'form'>
     }
   }
   return (
-    <form className={cn('flex flex-col gap-4 sm:gap-6', className)} onSubmit={onSubmit} {...props}>
+    <form
+      className={cn('flex flex-col gap-4 sm:gap-6', className)}
+      onSubmit={onSubmit}
+      {...props}
+    >
       <div className="flex flex-col items-center justify-center gap-2 text-center mb-4">
-        <h1 className="text-xl sm:text-2xl font-bold">Sign up to your account</h1>
+        <h1 className="text-xl sm:text-2xl font-bold">
+          Sign up to your account
+        </h1>
         <p className="text-muted-foreground text-sm text-balance items-center">
           Enter the details below to sign up to your account
         </p>
@@ -82,7 +89,11 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'form'>
           </span>
         </div>
         <div className="flex flex-row gap-2">
-          <Button variant="outline" className="w-full flex-1" onClick={handleGithubLogin}>
+          <Button
+            variant="outline"
+            className="w-full flex-1"
+            onClick={() => console.log('GitHub signup (demo mode)')}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -96,7 +107,11 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'form'>
             <span className="hidden sm:inline ml-2">Sign up with GitHub</span>
             <span className="sm:hidden ml-2">GitHub</span>
           </Button>
-          <Button variant="outline" className="w-full flex-1" onClick={handleGoogleLogin}>
+          <Button
+            variant="outline"
+            className="w-full flex-1"
+            onClick={() => console.log('Google signup (demo mode)')}
+          >
             <span className="inline-flex items-center justify-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

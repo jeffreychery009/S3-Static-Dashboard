@@ -3,7 +3,10 @@ import React from 'react';
 import Header from '@/components/header/header';
 import { SectionCards } from '@/components/cards/sectionCards';
 
-import { BarChartComponent, LineChartComponent } from '@/components/charts/chart-wrapper';
+import {
+  BarChartComponent,
+  LineChartComponent,
+} from '@/components/charts/chart-wrapper';
 import { paymentsData } from '@/constants';
 import { columns, Payment } from '@/app/payments/columns';
 import { DataTable } from '@/app/payments/data-table';

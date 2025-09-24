@@ -27,7 +27,9 @@ export default function AvatarCard() {
 
       {/* Bottom muted bar */}
       <div className="flex justify-between bg-muted/40 px-6 py-5 text-sm text-muted-foreground">
-        <div className="flex items-center">An avatar is optional but recommended</div>
+        <div className="flex items-center">
+          An avatar is optional but recommended
+        </div>
       </div>
     </div>
   );
