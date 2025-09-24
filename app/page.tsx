@@ -34,7 +34,7 @@ const Page = () => {
         <span className="sm:text-sm text-xs text-muted-foreground">v1.0.0</span>
         <div className="flex flex-col items-center justify-center mt-32">
           <h1 className="sm:text-6xl text-4xl font-semibold text-center">
-            Clean Starter for your SaaS
+            Clean Starter for your SaaS CI/CD
           </h1>
           <span className="sm:text-lg text-sm max-w-2xl text-center leading-relaxed mt-4 line-height-relaxed">
             Authentification, Protected Routes, a clean Dashboard shell, Settings page, and one
