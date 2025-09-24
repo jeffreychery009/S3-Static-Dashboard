@@ -12,15 +12,3 @@ variable "s3_bucket_domain_name" {
   description = "The domain name of the S3 bucket"
   type        = string
 }
-
-variable "custom_domain_name" {
-  description = "The custom domain name for CloudFront"
-  type        = string
-  default     = null
-}
-
-variable "acm_certificate_arn" {
-  description = "The ARN of the ACM certificate"
-  type        = string
-  default     = null
-}

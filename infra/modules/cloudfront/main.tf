@@ -59,12 +59,8 @@ resource "aws_cloudfront_distribution" "this" {
     }
 
     viewer_certificate {
-        acm_certificate_arn      = var.acm_certificate_arn
-        ssl_support_method       = "sni-only"
-        minimum_protocol_version = "TLSv1.2_2021"
+        cloudfront_default_certificate = true
     }
-
-    aliases = var.custom_domain_name != null ? [var.custom_domain_name, "www.${var.custom_domain_name}"] : null
 
     tags = {
         Name        = "Static Dashboard Distribution"
