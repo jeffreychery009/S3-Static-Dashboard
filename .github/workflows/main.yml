@@ -35,7 +35,7 @@ jobs:
       - name: Sync to S3
         run: aws s3 sync out s3://${{ secrets.S3_BUCKET_NAME }} --delete
 
-      - name: Invalidate CloudFront
-        run: aws cloudfront create-invalidation \
-          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-          --paths "/*"
+      - name: Invalidate CloudFront cache
+        run: |
+          echo "Distribution ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
