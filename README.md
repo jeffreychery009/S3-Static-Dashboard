@@ -1,143 +1,100 @@
-# {APP_NAME} — SaaS Lite Starter (Next.js + Supabase)
+# Static Website Hosting on AWS
 
-Production‑ready **SaaS starter** with authentication, protected routes, a clean dashboard shell, settings page, and one example CRUD entity. Built for rapid client delivery and easy customization.
+## Overview
 
-> **Tokens you replace per project:** `{APP_NAME}`, `{CLIENT_NAME}`, `{DEMO_URL}`, `{PRIMARY_COLOR_HEX}`, `{TEMPLATE_VERSION}`
+This project is a **static website hosted on AWS**, built using a simple, reliable, and production-proven architecture.  
+The website leverages **Amazon S3** for static asset storage, **Amazon CloudFront** as a global Content Delivery Network (CDN), and **Amazon Route 53** for DNS management.
 
----
-
-## What’s Included
-
-- ✅ **Auth**: Supabase email/password (sign up, sign in, password reset)
-- ✅ **Protected routes**: Redirect unauthenticated users to login
-- ✅ **Dashboard shell**: Topbar, sidebar, breadcrumbs, empty states
-- ✅ **Settings**: Profile basics + light/dark theme toggle
-- ✅ **Example CRUD**: “Projects” list + create/edit/delete (RLS-safe)
-- ✅ **Docs**: Owner’s Manual (PDF), Quick Start, Deploy guide
-- ✅ **Vercel‑ready**: Zero‑config build & deploy
-
-**Not included (available as add‑ons):** Stripe billing, Google Calendar/GA, roles/permissions, multi‑tenant workspaces, email/SMS, complex analytics.
+This setup prioritizes performance, scalability, security, and cost efficiency—following traditional AWS best practices for static web hosting.
 
 ---
 
-## Tech Stack
+## Architecture
 
-- **Framework:** Next.js (App Router) • **Language:** TypeScript
-- **Auth/DB:** Supabase (RLS on) • **UI:** Tailwind CSS + shadcn/ui • **State/Data:** React Query
-- **Icons:** lucide-react • **Hosting:** Vercel
+### AWS Services Used
 
----
+- **Amazon S3**
+  - Stores static assets (HTML, CSS, JavaScript, images)
+  - Acts as the origin for CloudFront
 
-## Live Demo
+- **Amazon CloudFront**
+  - Distributes content globally with low latency
+  - Caches assets at edge locations
+  - Provides HTTPS and performance optimization
 
-- Demo URL: `{DEMO_URL}`
-- Demo login: `demo@example.com` / `••••••••` _(optional)_
+- **Amazon Route 53**
+  - Manages DNS records
+  - Routes user traffic to the CloudFront distribution
 
----
+### High-Level Flow
 
-## Quick Start
-
-1. **Clone** this repo or click **Use this template** on GitHub.
-2. **Copy envs:** duplicate `.env.local.example` → `.env.local` and paste your Supabase URL + anon key.
-3. **Install deps:** `npm install`
-4. **Run dev:** `npm run dev` → open [http://localhost:3000](http://localhost:3000)
-5. **Auth test:** sign up, sign in, test password reset link.
-
-> **Never** commit real secrets. `.env*` is git‑ignored.
 
 ---
 
-## Environment Variables
+## Features
 
-Create `.env.local` from the example and fill the placeholders:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=your_project_url_here
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
-```
-
-> Do **not** expose a Supabase **service_role** key in the browser.
+- Global content delivery via CloudFront
+- Highly durable and scalable storage using S3
+- Custom domain support with Route 53
+- Serverless architecture (no EC2 or backend servers)
+- Secure access to S3 through CloudFront
 
 ---
 
-## Project Scripts
+## Prerequisites
 
-- `npm run dev` – start local dev server
-- `npm run build` – production build
-- `npm start` – run production build locally
-- `npm run lint` – lint/format (if configured)
-
----
-
-## Directory Map (high level)
-
-```
-app/              # App Router pages/layouts
-components/       # UI + dashboard shell
-lib/              # client/server helpers (Supabase, utils)
-public/           # logo, icons, static assets
-styles/           # Tailwind styles
-/docs             # QuickStart, Deploy, Owner’s Manual (source)
-/demo             # screenshots + sample data (optional)
-```
+- AWS account
+- AWS CLI configured
+- Registered domain (Route 53 or external registrar)
+- Basic familiarity with AWS IAM and S3 permissions
 
 ---
 
-## Security & RLS Notes
+## S3 Bucket Configuration
 
-- Supabase **Row Level Security** is enabled; example tables include owner‑scoped policies.
-- Keep secrets out of client code; use only the **anon** key in the browser.
-- Rotate keys and revoke sessions when migrating between environments.
-
----
-
-## Customization (5‑minute branding pass)
-
-- **Logo:** replace `/public/logo.*` (PNG/SVG)
-- **App title & metadata:** edit head metadata in `app/layout`
-- **Primary color:** set `{PRIMARY_COLOR_HEX}` in your theme/tokens
-- **Sidebar links:** update `nav.config` (labels, paths, icons)
-
-> See `/docs/Customize.md` for optional deeper theming.
+- Bucket used exclusively for static assets
+- Public access **disabled**
+- Access granted through CloudFront (OAC or OAI)
+- Assets uploaded to the bucket root
+- Example files:
+  - `index.html`
+  - `styles.css`
+  - `main.js`
 
 ---
 
-## Deploy to Vercel
+## CloudFront Configuration
 
-1. Create a new Vercel project from this repo.
-2. Add env vars (same as `.env.local`).
-3. Deploy → Vercel will detect Next.js automatically.
-4. Set your custom domain (optional).
-
-> Full steps in `/docs/Deploy.md`.
-
----
-
-## Owner’s Manual (PDF)
-
-A one‑page guide is provided in your delivery: **`/docs/OwnersManual.pdf`**.
-
-- Quick Start, customization basics, deploy steps, and available add‑ons.
-- For support/custom work, contact `{CLIENT_NAME}`’s project thread on Fiverr.
+- S3 bucket configured as the origin
+- Default root object set (e.g. `index.html`)
+- HTTPS enforced using an ACM certificate
+- Caching enabled for static assets
+- Connected to a custom domain
 
 ---
 
-## FAQ
+## Route 53 Configuration
 
-**Does this include payments/roles/multi‑tenant?** No, those are add‑ons.
-
-**Will you set up my Supabase/Vercel?** Not in Lite. Purchase the “Deploy & Env Setup” add‑on (screenshare or guided steps).
-
-**Can I use this commercially?** Yes—MIT license.
+- Hosted zone created for the domain
+- Alias record pointing to the CloudFront distribution
+- Supports root domain and subdomains
 
 ---
 
-## Changelog
+## Deployment Process
 
-- `{TEMPLATE_VERSION}` – Initial public template.
+1. Build or update static files locally
+2. Upload files to the S3 bucket
+3. (Optional) Invalidate CloudFront cache
+4. CloudFront propagates changes globally
 
 ---
 
-## License
+## Local Development
 
-MIT © {CLIENT_NAME}
+This is a static website and does not require a backend server.
+
+You can preview the site locally using any static file server:
+
+```bash
+npx serve .
